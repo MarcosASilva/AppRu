@@ -1,0 +1,8 @@
+{
+  "name": "AppRu",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "e6cc38f0"
+}
