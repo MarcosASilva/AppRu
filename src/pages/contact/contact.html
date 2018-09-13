@@ -1,17 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Contact
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar>
+      <ion-title>Ranking</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-grid>
+      <ion-row>
+        <ion-col>Cardápio</ion-col>
+        <ion-col>Pontuação</ion-col>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
-</ion-content>
+      </ion-row>
+      <div *ngFor="let item of lista">
+        <ion-row>
+          <ion-col>{{ item.cardapio }}</ion-col>
+          <ion-col>{{ item.valor }}</ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </ion-content>

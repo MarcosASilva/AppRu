@@ -1,11 +1,98 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar>
+      <ion-title>
+        Resultado da Votação
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+   
+  <ion-content>
+    <div padding>
+  
+        <ion-item>
+            <ion-label>Dia de Refeição</ion-label>
+            <ion-select (ionChange)="dayChange($event)">
+              <ion-option value="05">05</ion-option>
+              <ion-option value="06">06</ion-option>
+              <ion-option value="07">07</ion-option>
+              <ion-option value="08">08</ion-option>
+              <ion-option value="09">09</ion-option>
+              <ion-option  value="10" selected="true">10</ion-option>
+              <ion-option value="11">11</ion-option>
+              <ion-option value="12">12</ion-option>
+              <ion-option value="13">13</ion-option>
+              <ion-option value="14">14</ion-option>
+              <ion-option value="15">15</ion-option>
+            </ion-select>
+            <ion-select (ionChange)="monthChange($event)">
+              <ion-option value="01">Janeiro</ion-option>
+              <ion-option value="02">Fevereiro</ion-option>
+              <ion-option value="03">Março</ion-option>
+              <ion-option value="04">Abril</ion-option>
+              <ion-option value="05">Maio</ion-option>
+              <ion-option value="06">Junho</ion-option>
+              <ion-option value="07">Julho</ion-option>
+              <ion-option value="08">Agosto</ion-option>
+              <ion-option value="09" selected="true">Setembro</ion-option>
+              <ion-option value="10">Outubro</ion-option>
+              <ion-option value="11">Novembro</ion-option>
+              <ion-option value="12">Dezembro</ion-option>
+            </ion-select>
+            <ion-select>
+              <ion-option  value="10" >2010</ion-option>
+              <ion-option value="11">2011</ion-option>
+              <ion-option value="12">2012</ion-option>
+              <ion-option value="13">2013</ion-option>
+              <ion-option value="14">2014</ion-option>
+              <ion-option value="15">2015</ion-option>
+              <ion-option value="16">2016</ion-option>
+              <ion-option value="17">2017</ion-option>
+              <ion-option value="18" selected="true">2018</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+              <ion-label>Refeição</ion-label>
+              <ion-select [(ngModel)]="refeicao">
+                <ion-option value="a"  selected="true">Almoço</ion-option>
+                <ion-option value="j">Jantar</ion-option>
+              </ion-select>
+            </ion-item>
+    
+            <button ion-button outline round icon-only icon-end> <ion-icon name="search"></ion-icon></button>
+  
+      <ion-segment [(ngModel)]="segment" (ionChange)="calc(segment)">
+         
+        <ion-segment-button  value="line">
+          Por Hora
+        </ion-segment-button>
+        <ion-segment-button value="doughnut">
+          Total
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+   
+    <div [ngSwitch]="segment">
+      <ion-list *ngSwitchCase="'line'" >
+          <div style="display: block">
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [colors]="barChartColors"
+                    [chartType]="barChartType"></canvas>
+          </div>
+      </ion-list>
+   
+      <ion-list *ngSwitchCase="'doughnut'">
+              <div width="600" height="800">
+                <div style="display: block" >
+                  <canvas baseChart
+                              [data]="doughnutChartData"
+                              [labels]="doughnutChartLabels"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+              </div>
+      </ion-list>
+    </div>
+  </ion-content>
