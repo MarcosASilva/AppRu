@@ -1,21 +1,40 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>Ranking</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <ion-grid>
-      <ion-row>
-        <ion-col>Cardápio</ion-col>
-        <ion-col>Pontuação</ion-col>
+  <ion-navbar>
+    <ion-title>Ranking</ion-title>
+  </ion-navbar>
+</ion-header>
 
+<ion-content padding>
+  <ion-segment [(ngModel)]="segment" (ionChange)="calc(segment)">
+
+    <ion-segment-button value="a">
+      Almoço
+    </ion-segment-button>
+    <ion-segment-button value="j">
+      Jantar
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="segment">
+    <ion-list *ngSwitchCase="'a'">
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'j'">
+
+    </ion-list>
+  </div>
+  
+  <ion-grid>
+    <table>
+      <th>Cardápio</th>
+      <th>Pontuação</th>
+    </table>
+    <div *ngFor="let item of lista">
+      <ion-row>
+        <ion-col>{{ item.cardapio }}</ion-col>
+        <ion-col>{{ item.valor }}</ion-col>
       </ion-row>
-      <div *ngFor="let item of lista">
-        <ion-row>
-          <ion-col>{{ item.cardapio }}</ion-col>
-          <ion-col>{{ item.valor }}</ion-col>
-        </ion-row>
-      </div>
-    </ion-grid>
-  </ion-content>
+    </div>
+  </ion-grid>
+
+</ion-content>
